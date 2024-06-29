@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tests.DAL.Entities;
 
 namespace Tests.DAL
 {
@@ -10,6 +11,6 @@ namespace Tests.DAL
         }
 
         // db tables
-        // public DbSet<XXX> XXXs { get; set; }
+        public DbSet<Question> Questions { get; set; }
     }
 }
