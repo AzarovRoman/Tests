@@ -5,12 +5,13 @@ namespace Tests.DAL
 {
     public class Context : DbContext
     {
-        public Context(DbContextOptions<Context> options) : base(options)
-        {
-
-        }
-
         // db tables
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+
+        public Context(DbContextOptions<Context> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
     }
 }
