@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
-using Tests.BLL.Services;
 using Tests.DAL;
 
 namespace Tests.Controllers
@@ -10,10 +9,10 @@ namespace Tests.Controllers
     [Route("api/[controller]")]
     public class QuestionController : Controller
     {
-        private readonly QuestionService _questionService;
-        public QuestionController(Context ctx, IMapper mapper) 
+        private readonly IQuestionService _questionService;
+        public QuestionController(Context ctx, IQuestionService questionService) 
         {
-            _questionService = new(ctx, mapper);
+            _questionService = questionService;
         }
 
         [HttpPost]

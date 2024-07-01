@@ -1,8 +1,9 @@
 ﻿using Tests.DAL.Entities;
+using Tests.DAL.Interfaces;
 
 namespace Tests.DAL.Repositories
 {
-    public class QuestionRepository
+    public class QuestionRepository : IQuestionRepository
     {
         private Context _context;
 
@@ -13,9 +14,8 @@ namespace Tests.DAL.Repositories
 
         public Question? GetQuestionById(int id)
         {
-
             var question = _context.Questions.FirstOrDefault(x => x.Id == id);
-            
+
             return question;
         }
 

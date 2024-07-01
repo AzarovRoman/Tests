@@ -1,26 +1,22 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tests.BLL.MapperProfiles;
+using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
 using Tests.DAL;
 using Tests.DAL.Entities;
-using Tests.DAL.Repositories;
+using Tests.DAL.Interfaces;
 
 namespace Tests.BLL.Services
 {
-    public class QuestionService
+    public class QuestionService : IQuestionService
     {
         private readonly Context _context;
-        private readonly QuestionRepository _questionRepository;
+        private readonly IQuestionRepository _questionRepository;
         private readonly IMapper _mapper;
-        public QuestionService(Context ctx, IMapper mapper) 
+
+        public QuestionService(Context ctx, IMapper mapper, IQuestionRepository questionRepository)
         {
             _context = ctx;
-            _questionRepository = new QuestionRepository(_context);
+            _questionRepository = questionRepository;
 
             _mapper = mapper;
         }
@@ -29,7 +25,7 @@ namespace Tests.BLL.Services
         {
             var result = _questionRepository.AddQuestion(_mapper.Map<Question>(model));
 
-            if ( result < 1)
+            if (result < 1)
             {
                 throw new Exception("Не удалось создать новый вопрос для теста");
             }

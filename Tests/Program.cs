@@ -1,14 +1,18 @@
-using Microsoft.EntityFrameworkCore;
 using Tests.BLL.MapperProfiles;
-using Tests.DAL;
+using Tests.Extensions;
+using Tests.DAL.Repositories;
+using Tests.DAL.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
-var configuration = builder.Configuration;
-
-builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly);
+ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddDbContext<Context>(op => op.UseNpgsql(configuration.GetConnectionString("LocalDb")));
+builder.Services.RegisterDbContext(configuration);
+builder.Services.RegisterProjectRepositories();
+builder.Services.RegisterProjectServices();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+
+builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly);
 
 builder.Services.AddControllers();
 
