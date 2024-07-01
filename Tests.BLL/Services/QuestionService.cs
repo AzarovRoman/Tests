@@ -20,6 +20,19 @@ namespace Tests.BLL.Services
 
             _mapper = mapper;
         }
+         
+
+        public QuestionModel? GetQuestionById(int id)
+        {
+            var question = _questionRepository.GetQuestionById(id);
+            var questionModel = _mapper.Map<QuestionModel>(question);
+
+            if (questionModel == null) 
+            {
+                throw new Exception($"Объект с id {id} не существует");
+            }
+            return questionModel;
+        }
 
         public int AddQuestion(QuestionModel model)
         {

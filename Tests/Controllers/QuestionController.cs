@@ -21,5 +21,12 @@ namespace Tests.Controllers
         {
             return Ok(_questionService.AddQuestion(question));
         }
+
+        [HttpGet]
+        [Route("get-question/{id}")]
+        public ActionResult<QuestionModel> GetQuestionById(int id)
+        {
+            return Ok(_questionService.GetQuestionById(id));
+        }
     }
 }

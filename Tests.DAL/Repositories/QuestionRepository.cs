@@ -1,4 +1,5 @@
-﻿using Tests.DAL.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Tests.DAL.Entities;
 using Tests.DAL.Interfaces;
 
 namespace Tests.DAL.Repositories
@@ -11,10 +12,12 @@ namespace Tests.DAL.Repositories
         {
             _context = context;
         }
-
+        /// <summary>
+        /// Получение вопроса по id
+        /// </summary>       
         public Question? GetQuestionById(int id)
         {
-            var question = _context.Questions.FirstOrDefault(x => x.Id == id);
+            var question = _context.Questions.Include(x => x.Answers).FirstOrDefault(x => x.Id == id);
 
             return question;
         }
