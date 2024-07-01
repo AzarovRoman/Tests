@@ -1,8 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using Tests.BLL.MapperProfiles;
 using Tests.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+
+builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly);
 
 // Add services to the container.
 builder.Services.AddDbContext<Context>(op => op.UseNpgsql(configuration.GetConnectionString("LocalDb")));

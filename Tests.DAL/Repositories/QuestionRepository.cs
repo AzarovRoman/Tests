@@ -11,9 +11,27 @@ namespace Tests.DAL.Repositories
             _context = context;
         }
 
-        public Question GetQuestionById(int id)
+        public Question? GetQuestionById(int id)
         {
-            return _context.Questions.FirstOrDefault(q => q.Id == id);
+
+            var question = _context.Questions.FirstOrDefault(x => x.Id == id);
+            
+            return question;
+        }
+
+        /// <summary>
+        /// Добавление сущности вопроса в базу данных
+        /// </summary>
+        public int AddQuestion(Question question)
+        {
+            // Попытка записать вопрос в таблицу Questions
+            _context.Questions.Add(question);
+
+            // Сохранение изменений в базе данных. result - количество новых добавленных строк
+            // если result меньше 1, то данные не сохранились
+            var result = _context.SaveChanges();
+
+            return result;
         }
     }
 }
