@@ -11,7 +11,7 @@ namespace Tests.DAL
 
         public Context(DbContextOptions<Context> options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
     }
 }

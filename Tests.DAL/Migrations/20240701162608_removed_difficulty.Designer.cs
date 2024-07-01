@@ -11,8 +11,8 @@ using Tests.DAL;
 namespace Tests.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240630202752_EntityFix")]
-    partial class EntityFix
+    [Migration("20240701162608_removed_difficulty")]
+    partial class removed_difficulty
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,9 +56,6 @@ namespace Tests.DAL.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Difficulty")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Text")
                         .IsRequired()
