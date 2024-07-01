@@ -5,30 +5,25 @@
 namespace Tests.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class EntityFix : Migration
+    public partial class removed_difficulty : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.DropColumn(
                 name: "Difficulty",
-                table: "Questions",
-                type: "integer",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "text");
+                table: "Questions");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AddColumn<int>(
                 name: "Difficulty",
                 table: "Questions",
-                type: "text",
+                type: "integer",
                 nullable: false,
-                oldClrType: typeof(int),
-                oldType: "integer");
+                defaultValue: 0);
         }
     }
 }
