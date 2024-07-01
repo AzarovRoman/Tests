@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Tests.DAL.Entities;
+﻿using Tests.DAL.Entities;
 
 namespace Tests.DAL.Repositories
 {
