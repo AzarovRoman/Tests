@@ -10,5 +10,10 @@ namespace Tests.BLL.Interfaces
         /// Получение вопроса по id
         /// </summary>      
         QuestionModel? GetQuestionById(int id);
+        /// <summary>
+        /// Удаление вопроса по id
+        /// </summary>
+       
+        void DeleteQuestion(int id);
     }
 }

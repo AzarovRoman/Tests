@@ -45,5 +45,16 @@ namespace Tests.BLL.Services
 
             return result;
         }
+        public void DeleteQuestion(int id)
+        { 
+            var result = _questionRepository.DeleteQuestion(id);
+
+            if (result < 1) 
+            {
+                throw new Exception("Не удалось удалить вопрос по id");
+            }
+
+        }
+
     }
 }
