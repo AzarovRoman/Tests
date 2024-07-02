@@ -1,18 +1,26 @@
-using Microsoft.EntityFrameworkCore;
-using Tests.DAL;
+using Tests.BLL.MapperProfiles;
+using Tests.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-var configuration = builder.Configuration;
+ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddDbContext<Context>(op => op.UseNpgsql(configuration.GetConnectionString("LocalDb")));
+
+// Добавляем контекст базы данных в Di-контейнер
+builder.Services.RegisterDbContext(configuration);
+// Добавляем репозитории (DAL) в Di-контейнер
+builder.Services.RegisterProjectRepositories();
+// Добавляем сервисы (BLL) в Di-контейнер
+builder.Services.RegisterProjectServices();
+// Добавляем маппер (BLL) в Di-контейнер
+builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly);
 
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,0 +1,12 @@
+﻿using Tests.DAL.Enums;
+
+namespace Tests.BLL.Models
+{
+    public class QuestionModel
+    {
+        public int Id { get; set; }
+        public DifficultyEnum Difficulty { get; set; }
+        public string Text { get; set; }
+        public List<AnswerModel> Answers { get; set; }
+    }
+}
