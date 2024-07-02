@@ -36,5 +36,18 @@ namespace Tests.DAL.Repositories
 
             return result;
         }
+
+        /// <summary>
+        /// Удаление сущности вопроса из базы данных по id
+        /// </summary>       
+        public int DeleteQuestion(int id)
+        {            
+
+            _context.Questions.Remove(GetQuestionById(id));
+            var result = _context.SaveChanges();
+
+            return result;
+        }
+
     }
 }

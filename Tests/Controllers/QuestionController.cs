@@ -28,5 +28,14 @@ namespace Tests.Controllers
 
             return Ok(_questionService.GetQuestionById(id));
         }
+
+        [HttpDelete]
+        [Route("delete-question/{id}")]
+        public ActionResult DeleteQuestion(int id) 
+        {
+            _questionService.DeleteQuestion(id);
+
+            return Ok();
+        }
     }
 }
