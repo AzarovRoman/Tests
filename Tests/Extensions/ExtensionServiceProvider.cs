@@ -21,7 +21,7 @@ namespace Tests.Extensions
 
         public static void RegisterDbContext(this IServiceCollection services, ConfigurationManager configManager)
         {
-            services.AddDbContext<Context>(op => op.UseNpgsql(configManager.GetConnectionString("LocalDb")));
+            services.AddDbContext<Context>(op => op.UseNpgsql(configManager.GetConnectionString("RemoteDb")));
         }
     }
 }
