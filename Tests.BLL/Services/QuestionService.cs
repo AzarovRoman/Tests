@@ -36,6 +36,7 @@ namespace Tests.BLL.Services
 
         public int AddQuestion(QuestionModel model)
         {
+
             var result = _questionRepository.AddQuestion(_mapper.Map<Question>(model));
 
             if (result < 1)

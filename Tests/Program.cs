@@ -1,10 +1,12 @@
 using Tests.BLL.MapperProfiles;
 using Tests.Extensions;
+using Tests.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
+
 
 // Добавляем контекст базы данных в Di-контейнер
 builder.Services.RegisterDbContext(configuration);
@@ -21,8 +23,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+
+
 var app = builder.Build();
 
+// регистрация middleware
+
+app.UseGlobalExceptionHandler();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
