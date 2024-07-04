@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tests.BLL.Exceptions;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
 using Tests.DAL;
@@ -41,7 +42,7 @@ namespace Tests.BLL.Services
 
             if (result < 1)
             {
-                throw new Exception("Не удалось создать новый вопрос для теста");
+                throw new ServerExeption("Не удалось создать новый вопрос для теста");
             }
 
             return result;
@@ -52,7 +53,7 @@ namespace Tests.BLL.Services
 
             if (result < 1) 
             {
-                throw new Exception("Не удалось удалить вопрос по id");
+                throw new ServerExeption("Не удалось удалить вопрос по id");
             }
 
         }

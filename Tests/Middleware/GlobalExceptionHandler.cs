@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using Tests.BLL.Exceptions;
 using Tests.Models;
 
 namespace Tests.Middleware
@@ -15,14 +16,26 @@ namespace Tests.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            // в секциях catch будут отбиваться все исключения
+            // в секциях catch будут отбиваться все исключения. Секции catch выполнять от частного к общему
             try
             {
                 await _next(context);
             }
-            catch (Exception error)
+            catch (ServerExeption ex)
             {
-                await ConstructResponse(context, HttpStatusCode.InternalServerError, error.Message);
+                await ConstructResponse(context, HttpStatusCode.InternalServerError, ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                await ConstructResponse(context, HttpStatusCode.NotFound, ex.Message);
+            }
+            catch (ClientException ex)
+            {
+                await ConstructResponse(context, HttpStatusCode.BadRequest, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                await ConstructResponse(context, HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
