@@ -7,6 +7,11 @@ namespace Tests.DAL.Interfaces
         int AddQuestion(Question question);
 
         /// <summary>
+        /// Получение рандомного вопроса из базы данных
+        /// </summary>        
+        Question GetQuestionRandom();
+
+        /// <summary>
         /// Получение вопроса по id
         /// </summary>      
         Question? GetQuestionById(int id);
@@ -15,5 +20,6 @@ namespace Tests.DAL.Interfaces
         /// Удаление сущности вопроса из базы данных по id
         /// </summary>       
         int DeleteQuestion(int id);
+
     }
 }
