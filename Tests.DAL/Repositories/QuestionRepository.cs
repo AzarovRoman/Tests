@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tests.DAL.Entities;
 using Tests.DAL.Interfaces;
+using System;
 
 namespace Tests.DAL.Repositories
 {
@@ -19,6 +20,16 @@ namespace Tests.DAL.Repositories
         {
             var question = _context.Questions.Include(x => x.Answers).FirstOrDefault(x => x.Id == id);
 
+            return question;
+        }
+        /// <summary>
+        /// Получение рандомного вопроса из базы данных
+        /// </summary>        
+        public Question GetQuestionRandom() 
+        {
+            Random random = new Random();
+            int skipper = random.Next(0, _context.Questions.Count());
+            var question = _context.Questions.Include(x => x.Answers).Skip(skipper).Take(1).FirstOrDefault();
             return question;
         }
 

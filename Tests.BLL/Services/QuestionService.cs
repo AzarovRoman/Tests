@@ -33,6 +33,21 @@ namespace Tests.BLL.Services
             }
             return questionModel;
         }
+        public QuestionModel GetQuestionRandom()
+        {
+            var question = _questionRepository.GetQuestionRandom();
+            var questionModel = _mapper.Map<QuestionModel>(question);
+
+            if (questionModel != null)
+            {
+                return questionModel;
+            }
+            else
+            {
+                throw new Exception("Вопроса в базе данных не существует, повторите попытку");
+            }
+
+        }
 
         public int AddQuestion(QuestionModel model)
         {

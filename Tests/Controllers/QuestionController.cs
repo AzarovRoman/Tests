@@ -28,6 +28,12 @@ namespace Tests.Controllers
 
             return Ok(_questionService.GetQuestionById(id));
         }
+        [HttpGet]
+        [Route("get-question-random")]
+        public ActionResult<QuestionModel> GetQuestionRandom()
+        {
+            return Ok(_questionService.GetQuestionRandom());
+        }
 
         [HttpDelete]
         [Route("delete-question/{id}")]
