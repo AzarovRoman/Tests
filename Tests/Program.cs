@@ -7,7 +7,6 @@ ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 
-
 // ƒобавл€ем контекст базы данных в Di-контейнер
 builder.Services.RegisterDbContext(configuration);
 // ƒобавл€ем репозитории (DAL) в Di-контейнер
@@ -23,7 +22,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
-
 
 var app = builder.Build();
 
