@@ -7,7 +7,7 @@ ConfigurationManager configuration = builder.Configuration;
 // Add services to the container.
 
 // Добавляем контекст базы данных в Di-контейнер
-builder.Services.RegisterDbContext(configuration);
+builder.Services.RegisterDbContext(configuration, args[0]);
 // Добавляем репозитории (DAL) в Di-контейнер
 builder.Services.RegisterProjectRepositories();
 // Добавляем сервисы (BLL) в Di-контейнер
@@ -16,6 +16,7 @@ builder.Services.RegisterProjectServices();
 builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly);
 
 builder.Services.AddControllers();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
