@@ -9,7 +9,7 @@ namespace Tests.BLL.MapperProfiles
         public QuestionsMapper()
         {
             CreateMap<QuestionModel, Question>().ReverseMap();
-            CreateMap<AnswerModel, Answer>().ReverseMap();
+            CreateMap<AnswerModel, Answer>().ReverseMap();           
         }
     }
 }
