@@ -12,11 +12,13 @@ namespace Tests.Extensions
         public static void RegisterProjectRepositories(this IServiceCollection services)
         {
             services.AddScoped<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<ITestRepository, TestRepository>();
         }
 
         public static void RegisterProjectServices(this IServiceCollection services)
         {
             services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<ITestService, TestService>();
         }
 
         public static void RegisterDbContext(this IServiceCollection services, ConfigurationManager configManager)

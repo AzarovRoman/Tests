@@ -8,6 +8,7 @@ namespace Tests.DAL
         // db tables
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<Test> Tests { get; set; }
 
         public Context(DbContextOptions<Context> options) : base(options)
         {
