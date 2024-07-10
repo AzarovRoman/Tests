@@ -7,7 +7,7 @@ namespace Tests.DAL.Repositories
 {
     public class QuestionRepository : IQuestionRepository
     {
-        private Context _context;
+        private readonly Context _context;
 
         public QuestionRepository(Context context)
         {
