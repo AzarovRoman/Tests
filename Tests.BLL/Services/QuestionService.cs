@@ -36,7 +36,7 @@ namespace Tests.BLL.Services
         }
         public QuestionModel GetQuestionRandom()
         {
-            var question = _questionRepository.GetQuestionRandom();
+            var question = _questionRepository.GetRandomQuestion();
             var questionModel = _mapper.Map<QuestionModel>(question);
 
             if (questionModel != null)
@@ -70,7 +70,6 @@ namespace Tests.BLL.Services
             {
                 throw new ServerExeption("Не удалось удалить вопрос по id");
             }
-
         }
 
     }

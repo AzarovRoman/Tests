@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using System.Runtime.CompilerServices;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
 
@@ -9,16 +12,29 @@ namespace Tests.Controllers
     public class TestController : Controller
     {
         private readonly ITestService _testService;
-        public TestController(ITestService testService) 
+        private readonly IMapper _mapper;
+
+        public TestController(ITestService testService, IMapper mapper) 
         { 
             _testService = testService;
+            _mapper = mapper;
         }
+
         [HttpPost]
         [Route("create-test")]
         public ActionResult AddTest(TestModel test)
         {
             _testService.AddTest(test);
             return Ok(test);
+        }
+
+        [HttpPost]
+        [Route("create-test-with-id")]
+        public ActionResult<int> AddTestWithExistingQuestions(TestModel test)
+        {
+            int savedId = _testService.AddTestWithExistingQuestions(_mapper.Map<ExistingQuestionTestBLL>(test));
+
+            return Ok(savedId);
         }
     }
 }

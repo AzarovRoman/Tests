@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tests.DAL.Entities;
+﻿using Tests.DAL.Entities;
 using Tests.DAL.Interfaces;
 
 namespace Tests.DAL.Repositories
@@ -19,10 +14,12 @@ namespace Tests.DAL.Repositories
         /// <summary>
         /// Метод добавлет тест в базу данных
         /// </summary>        
-        public void AddTest(Test test)
+        public int AddTest(Test test)
         {
             _context.Add(test);
             _context.SaveChanges();
+
+            return test.Id;
         }
     }
 }

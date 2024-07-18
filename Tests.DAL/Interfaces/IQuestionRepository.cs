@@ -9,7 +9,7 @@ namespace Tests.DAL.Interfaces
         /// <summary>
         /// Получение рандомного вопроса из базы данных
         /// </summary>        
-        Question GetQuestionRandom();
+        Question GetRandomQuestion();
 
         /// <summary>
         /// Получение вопроса по id
