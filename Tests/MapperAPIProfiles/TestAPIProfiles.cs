@@ -8,10 +8,10 @@ namespace Tests.MapperAPIProfiles
     {
         public TestAPIProfiles()
         {
-            CreateMap<TestModel, ExistingQuestionTest>()
-                .ForMember(
-                dest => dest.QuestionsId,
-                opt => opt.MapFrom(src => src.Questions.Select(q => q.Id).ToList()));
+            CreateMap<ExistingQuestionTest, ExistingQuestionTestBLL>().ReverseMap();
+                //.ForMember(
+                //dest => dest.QuestionsId,
+                //opt => opt.MapFrom(src => src.Questions.Select(q => q.Id).ToList()));
         }
     }
 }

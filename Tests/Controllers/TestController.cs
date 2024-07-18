@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using System.Runtime.CompilerServices;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
+using Tests.Models;
 
 namespace Tests.Controllers
 {
@@ -30,7 +29,7 @@ namespace Tests.Controllers
 
         [HttpPost]
         [Route("create-test-with-id")]
-        public ActionResult<int> AddTestWithExistingQuestions(TestModel test)
+        public ActionResult<int> AddTestWithExistingQuestions(ExistingQuestionTest test)
         {
             int savedId = _testService.AddTestWithExistingQuestions(_mapper.Map<ExistingQuestionTestBLL>(test));
 

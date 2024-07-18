@@ -19,7 +19,8 @@ builder.Services.AddAutoMapper(
     typeof(QuestionsMapper).Assembly,
     typeof(TestsMapper).Assembly,
     typeof(QuestionAPIMapper).Assembly,
-    typeof(TestAPIProfiles).Assembly);
+    typeof(TestAPIProfiles).Assembly,
+    typeof(AnswerApiMapper).Assembly);
 
 builder.Services.AddControllers();
 

@@ -27,23 +27,18 @@ namespace Tests.BLL.Services
 
         public int AddTestWithExistingQuestions(ExistingQuestionTestBLL test)
         {
-            var questions = new List<QuestionModel>();
+            List<Question> findedQuestions = new List<Question>();
 
-            foreach(int id in test.QuestionsId)
-            {
-                Question findedQuestion = _questionRepository.GetQuestionById(id);
+            findedQuestions = _questionRepository.GetQuestionByIds(test.QuestionsId);
 
-                if (findedQuestion is null)
-                    throw new NotFoundException($"Вопрос с id {id} в тесте {test.Name} не найден");
-
-                questions.Add(_mapper.Map<QuestionModel>(findedQuestion));
-            }
+            if (findedQuestions.Count == 0 || findedQuestions.Contains(null))
+                throw new NotFoundException($"Вопрос в тесте {test.Name} не найден");
 
             TestModel newTest = new TestModel();
-            newTest.Questions = questions;
+            newTest.Questions = _mapper.Map<List<QuestionModel>>(findedQuestions);
             newTest.Name = test.Name;
 
-            int savedId = _testRepository.AddTest(_mapper.Map<Test>(newTest));
+            int savedId = _testRepository.AddTestWithExistingQuestion(_mapper.Map<Test>(newTest));
 
             if (savedId > 0)
                 return savedId;

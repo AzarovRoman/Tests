@@ -21,6 +21,7 @@ namespace Tests.DAL.Repositories
 
             return question;
         }
+
         /// <summary>
         /// Получение рандомного вопроса из базы данных
         /// </summary>        
@@ -58,5 +59,11 @@ namespace Tests.DAL.Repositories
             return result;
         }
 
+        public List<Question>? GetQuestionByIds(List<int> ids)
+        {
+            var question = _context.Questions.AsNoTracking().Where(q => ids.Contains(q.Id)).ToList();
+
+            return question;
+        }
     }
 }

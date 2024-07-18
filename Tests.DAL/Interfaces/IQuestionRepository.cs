@@ -14,6 +14,11 @@ namespace Tests.DAL.Interfaces
         /// <summary>
         /// Получение вопроса по id
         /// </summary>      
+        List<Question>? GetQuestionByIds(List<int> ids);
+
+        /// <summary>
+        /// Получение вопроса по id
+        /// </summary>      
         Question? GetQuestionById(int id);
 
         /// <summary>

@@ -8,5 +8,7 @@ namespace Tests.DAL.Interfaces
         /// Метод добавляет тест в базу данных
         /// </summary>        
         int AddTest(Test test);
+
+        int AddTestWithExistingQuestion(Test test);
     }
 }
