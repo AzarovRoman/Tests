@@ -33,5 +33,13 @@ namespace Tests.DAL.Repositories
 
             return test.Id;
         }
+
+        public Test GetRandomTest()
+        {
+            Random random = new Random();
+            int skipper = random.Next(0, _context.Tests.Count());
+            var test = _context.Tests.Include(x => x.Questions).Skip(skipper).Take(1).FirstOrDefault();
+            return test;
+        }
     }
 }

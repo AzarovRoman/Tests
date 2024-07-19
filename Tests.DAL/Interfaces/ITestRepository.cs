@@ -10,5 +10,7 @@ namespace Tests.DAL.Interfaces
         int AddTest(Test test);
 
         int AddTestWithExistingQuestion(Test test);
+
+        Test GetRandomTest();
     }
 }

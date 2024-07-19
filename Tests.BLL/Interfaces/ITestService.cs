@@ -14,5 +14,7 @@ namespace Tests.BLL.Interfaces
         /// </summary>
         /// <param name="test"></param>
         int AddTestWithExistingQuestions(ExistingQuestionTestBLL test);
+
+        TestModel GetRandomTest();
     }
 }

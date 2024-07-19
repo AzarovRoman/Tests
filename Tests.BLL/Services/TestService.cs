@@ -45,5 +45,19 @@ namespace Tests.BLL.Services
             else
                 throw new ServerExeption($"Тест с именем {test.Name} не удалось сохранить");
         }
+
+        public TestModel GetRandomTest()
+        {
+            Test testFromDb = _testRepository.GetRandomTest();
+
+            if (testFromDb is null)
+            {
+                throw new NotFoundException("Нет ни одного теста");
+            }
+
+            TestModel test = _mapper.Map<TestModel>(testFromDb);
+
+            return test;
+        }
     }
 }

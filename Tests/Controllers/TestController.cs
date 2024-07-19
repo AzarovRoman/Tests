@@ -35,5 +35,12 @@ namespace Tests.Controllers
 
             return Ok(savedId);
         }
+
+        [HttpGet]
+        [Route("get-random-test")]
+        public ActionResult<TestModel> GetRandomTest()
+        {
+            return Ok(_testService.GetRandomTest());
+        }
     }
 }
