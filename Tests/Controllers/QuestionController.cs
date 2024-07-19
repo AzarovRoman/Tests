@@ -12,9 +12,11 @@ namespace Tests.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IQuestionService _questionService;
-        public QuestionController(IQuestionService questionService)
+
+        public QuestionController(IQuestionService questionService, IMapper mapper)
         {
             _questionService = questionService;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -29,9 +31,9 @@ namespace Tests.Controllers
         [Route("get-question/{id}")]
         public ActionResult<QuestionModel> GetQuestionById(int id)
         {
-
             return Ok(_questionService.GetQuestionById(id));
         }
+
         [HttpGet]
         [Route("get-question-random")]
         public ActionResult<QuestionModel> GetQuestionRandom()
