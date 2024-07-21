@@ -2,6 +2,7 @@
 using Tests.BLL.Exceptions;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
+using Tests.BLL.Validations;
 using Tests.DAL;
 using Tests.DAL.Entities;
 using Tests.DAL.Interfaces;
@@ -53,12 +54,16 @@ namespace Tests.BLL.Services
         public int AddQuestion(QuestionModel model)
         {
 
+            if (Validation.IsCorrectQuestion(model) == false)
+            {
+                throw new Exception("Список ответов не удовлетворяет требования создания вопроса - (1 правильный и 3 неправильных ответа)");
+            }
             var result = _questionRepository.AddQuestion(_mapper.Map<Question>(model));
 
             if (result < 1)
             {
                 throw new ServerExeption("Не удалось создать новый вопрос для теста");
-            }
+            }            
 
             return result;
         }
