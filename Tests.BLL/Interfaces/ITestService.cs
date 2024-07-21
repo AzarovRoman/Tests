@@ -8,5 +8,10 @@ namespace Tests.BLL.Interfaces
         /// Метод добавляет тест в базу данных
         /// </summary>        
         void AddTest(TestModel test);
+
+        /// <summary>
+        /// Метод выдает случайный тест
+        /// </summary>        
+        TestModel GetTestRandom();
     }
 }

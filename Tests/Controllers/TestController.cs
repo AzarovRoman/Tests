@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
+using Tests.BLL.Services;
 
 namespace Tests.Controllers
 {
@@ -19,6 +20,12 @@ namespace Tests.Controllers
         {
             _testService.AddTest(test);
             return Ok(test);
+        }
+        [HttpGet]
+        [Route("get-test-random")]
+        public ActionResult GetTestRandom()
+        {
+            return Ok(_testService.GetTestRandom());
         }
     }
 }

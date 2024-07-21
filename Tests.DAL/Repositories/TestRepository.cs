@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace Tests.DAL.Repositories
         {
             _context.Add(test);
             _context.SaveChanges();
+        }
+        public Test GetTestRandom()
+        {
+            Random random = new Random();
+            int skipper = random.Next(0, _context.Tests.Count());
+            var test = _context.Tests.Include(x => x.Questions).ThenInclude(x => x.Answers).Skip(skipper).Take(1).FirstOrDefault();
+            return test;
         }
     }
 }
