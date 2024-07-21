@@ -14,7 +14,7 @@ builder.Services.RegisterProjectRepositories();
 // Добавляем сервисы (BLL) в Di-контейнер
 builder.Services.RegisterProjectServices();
 // Добавляем маппер (BLL) в Di-контейнер
-builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly);
+builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly, typeof(TestsMapper).Assembly);
 
 builder.Services.AddControllers();
 
