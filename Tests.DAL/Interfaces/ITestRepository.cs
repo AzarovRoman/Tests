@@ -8,5 +8,10 @@ namespace Tests.DAL.Interfaces
         /// Метод добавляет тест в базу данных
         /// </summary>        
         void AddTest(Test test);
+
+        /// <summary>
+        /// Метод выдает случайный тест
+        /// </summary>        
+        Test GetTestRandom();
     }
 }

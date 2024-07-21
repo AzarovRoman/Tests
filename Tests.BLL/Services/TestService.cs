@@ -8,6 +8,7 @@ using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
 using Tests.DAL.Entities;
 using Tests.DAL.Interfaces;
+using Tests.DAL.Repositories;
 
 namespace Tests.BLL.Services
 {
@@ -24,6 +25,20 @@ namespace Tests.BLL.Services
         {
             _testRepository.AddTest(_mapper.Map<Test>(test));
 
+        }
+        public TestModel GetTestRandom()
+        {
+            var test = _testRepository.GetTestRandom();
+            var testModel = _mapper.Map<TestModel>(test);
+
+            if (testModel != null)
+            {
+                return testModel;
+            }
+            else
+            {
+                throw new Exception("Теста в базе данных не существует, повторите попытку");
+            }
         }
     }
 }
