@@ -9,6 +9,7 @@ namespace Tests.MapperAPIProfiles
         public QuestionAPIMapper() 
         {
             CreateMap<QuestionAPIModel, QuestionModel>().ReverseMap();
+            CreateMap<AnswerAPIModel, AnswerModel>().ReverseMap();
         }
     }
 }
