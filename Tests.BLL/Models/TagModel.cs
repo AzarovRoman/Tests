@@ -4,17 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tests.DAL.Entities
+namespace Tests.BLL.Models
 {
-    public class Test
+    public class TagModel
     {
         public int Id { get; set; }
         /// <summary>
-        /// Список вопросов теста
-        /// </summary>
-        public List<Question> Questions { get; set; }
-        /// <summary>
-        /// Название теста
+        /// Название тега
         /// </summary>
         public string Name { get; set; }
     }
