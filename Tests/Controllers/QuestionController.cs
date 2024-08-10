@@ -12,9 +12,9 @@ namespace Tests.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IQuestionService _questionService;
-
         public QuestionController(IQuestionService questionService, IMapper mapper)
         {
+            _mapper = mapper;
             _questionService = questionService;
             _mapper = mapper;
         }
