@@ -23,9 +23,9 @@ namespace Tests.Extensions
             services.AddScoped<ITagService, TagService>();
         }
 
-        public static void RegisterDbContext(this IServiceCollection services, ConfigurationManager configManager)
+        public static void RegisterDbContext(this IServiceCollection services, ConfigurationManager configManager, string databaseName = "RemoteDb")
         {
-            services.AddDbContext<Context>(op => op.UseNpgsql(configManager.GetConnectionString("LocalDb")));
+            services.AddDbContext<Context>(op => op.UseNpgsql(configManager.GetConnectionString(databaseName)));
         }
     }
 }
