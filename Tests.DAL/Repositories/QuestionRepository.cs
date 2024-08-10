@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tests.DAL.Entities;
 using Tests.DAL.Interfaces;
-using System;
 
 namespace Tests.DAL.Repositories
 {
@@ -22,10 +21,11 @@ namespace Tests.DAL.Repositories
 
             return question;
         }
+
         /// <summary>
         /// Получение рандомного вопроса из базы данных
         /// </summary>        
-        public Question GetQuestionRandom() 
+        public Question GetRandomQuestion() 
         {
             Random random = new Random();
             int skipper = random.Next(0, _context.Questions.Count());
@@ -53,12 +53,17 @@ namespace Tests.DAL.Repositories
         /// </summary>       
         public int DeleteQuestion(int id)
         {            
-
             _context.Questions.Remove(GetQuestionById(id));
             var result = _context.SaveChanges();
 
             return result;
         }
 
+        public List<Question>? GetQuestionByIds(List<int> ids)
+        {
+            var question = _context.Questions.AsNoTracking().Where(q => ids.Contains(q.Id)).ToList();
+
+            return question;
+        }
     }
 }

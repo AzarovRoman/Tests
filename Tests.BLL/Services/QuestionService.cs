@@ -11,13 +11,11 @@ namespace Tests.BLL.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly Context _context;
         private readonly IQuestionRepository _questionRepository;
         private readonly IMapper _mapper;
 
-        public QuestionService(Context ctx, IMapper mapper, IQuestionRepository questionRepository)
+        public QuestionService(IMapper mapper, IQuestionRepository questionRepository)
         {
-            _context = ctx;
             _questionRepository = questionRepository;
 
             _mapper = mapper;
@@ -37,7 +35,7 @@ namespace Tests.BLL.Services
         }
         public QuestionModel GetQuestionRandom()
         {
-            var question = _questionRepository.GetQuestionRandom();
+            var question = _questionRepository.GetRandomQuestion();
             var questionModel = _mapper.Map<QuestionModel>(question);
 
             if (questionModel != null)
@@ -75,7 +73,6 @@ namespace Tests.BLL.Services
             {
                 throw new ServerExeption("Не удалось удалить вопрос по id");
             }
-
         }
 
     }
