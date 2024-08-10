@@ -1,5 +1,6 @@
 using Tests.BLL.MapperProfiles;
 using Tests.Extensions;
+using Tests.MapperAPIProfiles;
 using Tests.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,12 @@ builder.Services.RegisterProjectRepositories();
 // Добавляем сервисы (BLL) в Di-контейнер
 builder.Services.RegisterProjectServices();
 // Добавляем маппер (BLL) в Di-контейнер
-builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly);
+builder.Services.AddAutoMapper(
+    typeof(QuestionsMapper).Assembly,
+    typeof(TestsMapper).Assembly,
+    typeof(QuestionAPIMapper).Assembly,
+    typeof(TestAPIProfiles).Assembly,
+    typeof(AnswerApiMapper).Assembly);
 
 builder.Services.AddControllers();
 

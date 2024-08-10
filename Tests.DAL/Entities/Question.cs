@@ -1,4 +1,4 @@
-﻿using Tests.DAL.Enums;
+using Tests.DAL.Enums;
 
 namespace Tests.DAL.Entities
 {
