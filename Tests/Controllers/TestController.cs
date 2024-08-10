@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
+using Tests.DAL.Entities;
 using Tests.Models;
 using Tests.BLL.Services;
 
@@ -22,9 +23,10 @@ namespace Tests.Controllers
 
         [HttpPost]
         [Route("create-test")]
-        public ActionResult AddTest(TestModel test)
+        public ActionResult AddTest(TestAPIModel test)
         {
-            _testService.AddTest(test);
+            var testModel = _mapper.Map<TestModel>(test);
+            _testService.AddTest(testModel);
             return Ok(test);
         }
 
