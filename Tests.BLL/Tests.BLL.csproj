@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Settings\" />
+    <Compile Remove="Settings\**" />
+    <EmbeddedResource Remove="Settings\**" />
+    <None Remove="Settings\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,7 @@
 using Tests.BLL.MapperProfiles;
 using Tests.Extensions;
+using Tests.MapperAPIProfiles;
+using Tests.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -13,7 +15,12 @@ builder.Services.RegisterProjectRepositories();
 // Добавляем сервисы (BLL) в Di-контейнер
 builder.Services.RegisterProjectServices();
 // Добавляем маппер (BLL) в Di-контейнер
-builder.Services.AddAutoMapper(typeof(QuestionsMapper).Assembly);
+builder.Services.AddAutoMapper(
+    typeof(QuestionsMapper).Assembly,
+    typeof(TestsMapper).Assembly,
+    typeof(QuestionAPIMapper).Assembly,
+    typeof(TestAPIProfiles).Assembly,
+    typeof(AnswerApiMapper).Assembly);
 
 builder.Services.AddControllers();
 
@@ -22,14 +29,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+
 var app = builder.Build();
 
+// регистрация middleware
+
+app.UseGlobalExceptionHandler();
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
