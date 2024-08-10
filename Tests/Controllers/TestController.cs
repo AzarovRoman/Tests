@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
 using Tests.Models;
+using Tests.BLL.Services;
 
 namespace Tests.Controllers
 {
