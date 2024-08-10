@@ -4,11 +4,10 @@ using Tests.Models;
 
 namespace Tests.MapperAPIProfiles
 {
-    public class QuestionAPIMapper : Profile
+    public class AnswerApiMapper : Profile
     {
-        public QuestionAPIMapper() 
+        public AnswerApiMapper()
         {
-            CreateMap<QuestionAPIModel, QuestionModel>().ReverseMap();
             CreateMap<AnswerAPIModel, AnswerModel>().ReverseMap();
         }
     }

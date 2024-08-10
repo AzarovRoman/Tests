@@ -13,17 +13,19 @@ namespace Tests.Extensions
         {
             services.AddScoped<IQuestionRepository, QuestionRepository>();
             services.AddScoped<ITestRepository, TestRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
         }
 
         public static void RegisterProjectServices(this IServiceCollection services)
         {
             services.AddScoped<IQuestionService, QuestionService>();
             services.AddScoped<ITestService, TestService>();
+            services.AddScoped<ITagService, TagService>();
         }
 
         public static void RegisterDbContext(this IServiceCollection services, ConfigurationManager configManager)
         {
-            services.AddDbContext<Context>(op => op.UseNpgsql(configManager.GetConnectionString("RemoteDb")));
+            services.AddDbContext<Context>(op => op.UseNpgsql(configManager.GetConnectionString("LocalDb")));
         }
     }
 }

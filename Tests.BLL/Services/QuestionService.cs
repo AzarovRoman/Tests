@@ -2,6 +2,7 @@
 using Tests.BLL.Exceptions;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
+using Tests.BLL.Validations;
 using Tests.DAL;
 using Tests.DAL.Entities;
 using Tests.DAL.Interfaces;
@@ -10,13 +11,11 @@ namespace Tests.BLL.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly Context _context;
         private readonly IQuestionRepository _questionRepository;
         private readonly IMapper _mapper;
 
-        public QuestionService(Context ctx, IMapper mapper, IQuestionRepository questionRepository)
+        public QuestionService(IMapper mapper, IQuestionRepository questionRepository)
         {
-            _context = ctx;
             _questionRepository = questionRepository;
 
             _mapper = mapper;
@@ -36,7 +35,7 @@ namespace Tests.BLL.Services
         }
         public QuestionModel GetQuestionRandom()
         {
-            var question = _questionRepository.GetQuestionRandom();
+            var question = _questionRepository.GetRandomQuestion();
             var questionModel = _mapper.Map<QuestionModel>(question);
 
             if (questionModel != null)
@@ -53,12 +52,16 @@ namespace Tests.BLL.Services
         public int AddQuestion(QuestionModel model)
         {
 
+            if (Validation.IsCorrectQuestion(model) == false)
+            {
+                throw new Exception("Список ответов не удовлетворяет требования создания вопроса - (1 правильный и 3 неправильных ответа)");
+            }
             var result = _questionRepository.AddQuestion(_mapper.Map<Question>(model));
 
             if (result < 1)
             {
                 throw new ServerExeption("Не удалось создать новый вопрос для теста");
-            }
+            }            
 
             return result;
         }
@@ -70,7 +73,6 @@ namespace Tests.BLL.Services
             {
                 throw new ServerExeption("Не удалось удалить вопрос по id");
             }
-
         }
 
     }
