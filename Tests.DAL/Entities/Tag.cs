@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace Tests.DAL.Entities
 {
-    public class Test
+    public class Tag
     {
         public int Id { get; set; }
         /// <summary>
-        /// Список вопросов теста
-        /// </summary>
-        public List<Question> Questions { get; set; }
-        /// <summary>
-        /// Название теста
+        /// Название тега
         /// </summary>
         public string Name { get; set; }
     }
