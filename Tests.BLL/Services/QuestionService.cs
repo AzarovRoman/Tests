@@ -10,13 +10,11 @@ namespace Tests.BLL.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly Context _context;
         private readonly IQuestionRepository _questionRepository;
         private readonly IMapper _mapper;
 
-        public QuestionService(Context ctx, IMapper mapper, IQuestionRepository questionRepository)
+        public QuestionService(IMapper mapper, IQuestionRepository questionRepository)
         {
-            _context = ctx;
             _questionRepository = questionRepository;
 
             _mapper = mapper;
