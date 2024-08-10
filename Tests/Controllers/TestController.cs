@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Tests.BLL.Interfaces;
 using Tests.BLL.Models;
+using Tests.Models;
 using Tests.BLL.Services;
 
 namespace Tests.Controllers
@@ -10,10 +12,14 @@ namespace Tests.Controllers
     public class TestController : Controller
     {
         private readonly ITestService _testService;
-        public TestController(ITestService testService) 
+        private readonly IMapper _mapper;
+
+        public TestController(ITestService testService, IMapper mapper) 
         { 
             _testService = testService;
+            _mapper = mapper;
         }
+
         [HttpPost]
         [Route("create-test")]
         public ActionResult AddTest(TestModel test)
@@ -21,11 +27,21 @@ namespace Tests.Controllers
             _testService.AddTest(test);
             return Ok(test);
         }
-        [HttpGet]
-        [Route("get-test-random")]
-        public ActionResult GetTestRandom()
+
+        [HttpPost]
+        [Route("create-test-with-id")]
+        public ActionResult<int> AddTestWithExistingQuestions(ExistingQuestionTest test)
         {
-            return Ok(_testService.GetTestRandom());
+            int savedId = _testService.AddTestWithExistingQuestions(_mapper.Map<ExistingQuestionTestBLL>(test));
+
+            return Ok(savedId);
+        }
+
+        [HttpGet]
+        [Route("get-random-test")]
+        public ActionResult<TestModel> GetRandomTest()
+        {
+            return Ok(_testService.GetRandomTest());
         }
     }
 }

@@ -10,8 +10,11 @@ namespace Tests.BLL.Interfaces
         void AddTest(TestModel test);
 
         /// <summary>
-        /// Метод выдает случайный тест
-        /// </summary>        
-        TestModel GetTestRandom();
+        /// Метод добавляет тест с уже существующими вопросами в базу данных
+        /// </summary>
+        /// <param name="test"></param>
+        int AddTestWithExistingQuestions(ExistingQuestionTestBLL test);
+
+        TestModel GetRandomTest();
     }
 }
